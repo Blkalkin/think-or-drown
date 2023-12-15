@@ -1,0 +1,59 @@
+/* Header.css */
+header {
+    background-color: #000; /* Black background for the header */
+    padding: 10px 20px; /* Top and Bottom | Left and Right */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between logo and language selector */
+  }
+  
+  header img {
+    height: 50px; /* Adjust the size of the logo */
+    width: auto; /* Maintain aspect ratio */
+  }
+  
+  header div {
+    color: #fff; /* White color text for the language selector */
+    border: 1px solid #fff; /* White border for the dropdown */
+    border-radius: 4px; /* Slightly rounded corners for the dropdown */
+    background-color: #000; /* Black background for the dropdown */
+  }
+  
+  header select {
+    background: transparent; /* Transparent background to see the header color */
+    color: #fff; /* White color text for the options */
+    padding: 5px 10px; /* Padding inside the dropdown */
+    border: none; /* Remove default border */
+    -webkit-appearance: none; /* Remove default style in WebKit browsers */
+    -moz-appearance: none; /* Remove default style in Firefox */
+    appearance: none; /* Remove default style */
+    font-size: 1em; /* Set font-size */
+  }
+  
+  /* Custom arrow for the select element */
+  header div:after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: #fff; /* White color for the arrow */
+    pointer-events: none; /* Make it un-clickable */
+  }
+  
+  /* To hide the default arrow in IE */
+  header select::-ms-expand {
+    display: none;
+  }
+  
+  /* Media query for responsive adjustments */
+  @media (max-width: 768px) {
+    header {
+      padding: 10px; /* Lesser padding on smaller screens */
+    }
+  
+    header img {
+      height: 40px; /* Smaller logo on smaller screens */
+    }
+  }
+  

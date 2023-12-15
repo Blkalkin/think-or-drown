@@ -1,0 +1,43 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #000; 
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh; 
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center children horizontally */
+  justify-content: center; /* Center children vertically */
+  min-height: 60vh; /* Full height of the viewport */
+  background-color: #000; /* Black background for the entire container */
+  color: #fff; /* White text color */
+}
+
+.login-input {
+  margin-bottom: 20px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+}

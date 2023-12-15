@@ -1,0 +1,88 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    font-family: 'Arial', sans-serif; /* Use the font that most closely matches the original */
+    color: #333; /* Standard text color */
+  }
+  
+  .login-form {
+    background: #000; /* Black background for the form */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Adjust shadow for better visibility on black background */
+    border-radius: 8px; /* Rounded corners */
+    width: 300px; /* Adjust to match the original form width */
+    color: #fff; /* Change text color to white for better visibility on black background */
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px; /* Smaller label font size */
+    color: #ffffff; /* Lighter label color */
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px; /* Input text size */
+  }
+  
+  .login-utilities {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px; /* Space above the login utilities */
+    font-size: 12px; /* Smaller text for utilities */
+  }
+  
+  .forgot-id-link {
+    color: #4b9cd3;
+    text-decoration: none; /* Remove underline from link */
+  }
+  
+  .continue-button,
+  .create-user-button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px; /* Larger button text */
+    margin-top: 10px; /* Space between buttons and the rest of the form */
+  }
+  
+  .continue-button {
+    color: white;
+    background-color: #52B4F9;   
+  }
+  
+  .create-user-button {
+    background-color: #52B4F9;    /* Adjust to match the original button color */
+    color: white;
+  }
+  
+  /* Hover effects */
+  .continue-button:hover,
+  .create-user-button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .login-form {
+      width: 90%; /* Full width on smaller screens */
+      margin: 20px;
+    }
+  }
+  
