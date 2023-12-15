@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './CreateUserForm.css'; // Import the CSS file here
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const CreateUserForm = () => {
   const [username, setUsername] = useState('');
