@@ -1,8 +1,23 @@
 import React from 'react';
 import './TopBar.css'; // Make sure to create this CSS file
 import tdlogo from './tdlogo.svg';
+import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
+  const navigate = useNavigate(); 
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post('http://localhost:8000/logout');
+      console.log(response.data);
+      
+      // Navigate to login or home page after successful logout
+      navigate('/'); 
+
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
   return (
     <div className="top-bar">
       <div className="logo-container">
@@ -18,7 +33,7 @@ const TopBar = () => {
         <a href="/feedback">Feedback</a>
         <a href="/support">Support</a>
         <a href="/settings">Settings</a>
-        <a href="/logout">Log Out</a>
+        <a href="/logout" onClick={handleLogout}>Log Out</a>
       </div>
     </div>
   );

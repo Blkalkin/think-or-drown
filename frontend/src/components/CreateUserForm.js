@@ -18,7 +18,7 @@ const CreateUserForm = () => {
       }
     };
   
-    axios.post('http://localhost:8000/signup', userData)
+    axios.post('http://localhost:3000/signup', userData)
       .then(response => {
         console.log('User created:', response.data);
         // Handle success (e.g., redirecting to a login page or displaying a success message)

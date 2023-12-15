@@ -12,7 +12,7 @@ const Dashboard = () => {
     axios.defaults.withCredentials = true;
 
     // Fetch portfolio data
-    axios.get('http://localhost:8000/portfolios/1')
+    axios.get('http://localhost:3000/portfolios/1')
       .then(response => {
         setPortfolio(response.data);
       })
@@ -21,7 +21,7 @@ const Dashboard = () => {
       });
 
     // Fetch market stocks data
-    axios.get('http://localhost:8000/market_stocks')
+    axios.get('http://localhost:3000/market_stocks')
       .then(response => {
         setMarketStocks(response.data);
       })
@@ -31,7 +31,7 @@ const Dashboard = () => {
   }, []);
 
   const handleBuy = (tickerSymbol, quantity) => {
-    axios.post(`http://localhost:8000/portfolios/1/stocks/buy`, {
+    axios.post(`http://localhost:3000/portfolios/1/stocks/buy`, {
       ticker_symbol: tickerSymbol,
       quantity: quantity
     }).then(response => {
@@ -46,7 +46,7 @@ const Dashboard = () => {
   };
 
   const handleSell = (stockId, quantity) => {
-    axios.delete(`http://localhost:8000/portfolios/1/stocks/${stockId}/sell`, {
+    axios.delete(`http://localhost:3000/portfolios/1/stocks/${stockId}/sell`, {
       data: { quantity: quantity }
     }).then(response => {
       // Update the portfolio data after selling
@@ -67,7 +67,6 @@ const Dashboard = () => {
           <h2>Account Summary</h2>
           <div>Account Value: ${portfolio?.total_value}</div>
           <div>Buying Power: ${portfolio?.current_cash}</div>
-          {/* ... other account details ... */}
         </section>
 
         <section className="market-stocks">
