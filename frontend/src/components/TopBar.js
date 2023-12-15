@@ -9,7 +9,7 @@ const TopBar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post('http://localhost:8000/logout');
+      const response = await axios.post('/logout');
       console.log(response.data);
       
       // Navigate to login or home page after successful logout
@@ -34,7 +34,7 @@ const TopBar = () => {
         <a href="/feedback">Feedback</a>
         <a href="/support">Support</a>
         <a href="/settings">Settings</a>
-        <a href="/logout" onClick={handleLogout}>Log Out</a>
+        <a onClick={handleLogout}>Log Out</a>
       </div>
     </div>
   );

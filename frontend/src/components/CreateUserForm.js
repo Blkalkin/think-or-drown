@@ -18,14 +18,14 @@ const CreateUserForm = () => {
       }
     };
   
-    axios.post('http://localhost:3000/signup', userData)
+    axios.post('/signup', userData)
       .then(response => {
         console.log('User created:', response.data);
-        // Handle success (e.g., redirecting to a login page or displaying a success message)
+        navigate('/dashboard');
       })
+      
       .catch(error => {
         console.error('Error creating user:', error);
-        // Handle error (e.g., displaying error messages to the user)
       });
   };
 
