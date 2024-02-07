@@ -1,3 +1,5 @@
+
+
 class User < ApplicationRecord
   attr_reader :password
 
@@ -6,8 +8,8 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true }
 
   has_secure_password
-  has_one :portfolio
-
+  has_many :portfolios, dependent: :destroy
+  
   before_validation :ensure_session_token
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
@@ -36,6 +38,11 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= generate_session_token
+  end
+
+
+  def get_value
+    portfolios.sum('bought_price * bought_quantity')
   end
 
   private

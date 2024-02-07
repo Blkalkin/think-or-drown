@@ -7,22 +7,13 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
 
-  # MarketStocks routes
-  resources :market_stocks, only: [:index] do
-    collection do
-      post 'update_prices'  # Endpoint to update market stock prices
-    end
-  end
-
-  # Portfolio and nested stock routes
-  resources :portfolios, only: [:show] do
-    resources :stocks, only: [] do
-      collection do
-        post 'buy'  # Endpoint to buy stocks
-      end
-      member do
-        delete 'sell'  # Endpoint to sell stocks
-      end
+  resources :users do
+    member do
+      post 'update_current_value'
+      post 'update_current_cash'
+      post 'manage_portfolio_transaction'
+      get 'portfolio_data'
+      post 'update_current_cash'
     end
   end
 
