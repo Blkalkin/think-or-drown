@@ -1,35 +1,105 @@
-.dashboard-container {
-    color: #fff;
-    background-color: #000; /* Adjust based on your theme */
-    padding: 1rem;
+/* Dashboard.css */
+.dashboard {
+  font-family: 'Arial', sans-serif;
+  color: #d1d4dc;
+  background-color: #0e0f14;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  overflow: auto;
+}
+
+.account-summary, .positions, .trading-interface {
+  background-color: #131722;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.account-summary {
+  flex-basis: 30%;
+  height: fit-content;
+}
+
+.account-detail {
+  margin-bottom: 8px;
+}
+
+.account-label {
+  font-weight: bold;
+  color: #82a1b0;
+}
+
+.account-value {
+  color: #ffffff;
+}
+
+.positions {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.trading-interface {
+  flex-basis: 30%;
+  height: fit-content;
+}
+
+.positions h2, .trading-interface h2, .account-summary h2 {
+  color: #fff;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.portfolio-item {
+  background-color: #1b1e2f;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.portfolio-item p {
+  margin: 5px 0;
+  font-size: 0.875rem;
+}
+
+/* Input and Select styles */
+.input, .select {
+  background-color: #1b1e2f;
+  border: 1px solid #333;
+  color: #ddd;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 4px;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .dashboard {
+    flex-direction: column;
   }
-  
-  .account-summary,
-  .individual-positions {
-    background-color: #1a1a1a; /* A slightly lighter shade for contrast */
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-  }
-  
-  .account-summary h2,
-  .individual-positions h2 {
-    margin-bottom: 1rem;
-  }
-  
-  table {
+
+  .account-summary, .positions, .trading-interface {
+    flex-basis: auto;
     width: 100%;
-    border-collapse: collapse;
   }
-  
-  table th,
-  table td {
-    text-align: left;
-    padding: 0.5rem;
-    border-bottom: 1px solid #333;
-  }
-  
-  /* Responsive table styles can be added here */
-  
-  /* Add media queries and further styles as necessary */
-  
+}

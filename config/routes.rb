@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post 'manage_portfolio_transaction'
       get 'portfolio_data'
       post 'update_current_cash'
+      get 'get_user_info'
     end
   end
 

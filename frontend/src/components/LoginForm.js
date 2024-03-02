@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
+import { useUser } from './UserContext'; // Import useUser
 import './LoginForm.css'; // Import the separate CSS file
 import Header from './Header';
 
 const LoginForm = () => {
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState(''); 
+  const { setUserId } = useUser();
   const navigate = useNavigate(); // Create the navigate function
 
   const handleLogin = async (event) => {
@@ -17,6 +19,8 @@ const LoginForm = () => {
           username: loginId, 
           password: password,
       });
+
+      setUserId(response.data.userId);
 
       // If login is successful, redirect to the landing page
       navigate('/dashboard'); // Replace '/dashboard' with the path to your landing page

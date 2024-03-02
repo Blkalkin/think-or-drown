@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Dashboard.css'
 
 const Dashboard = () => {
   const [ticker, setTicker] = useState('');
@@ -7,6 +8,7 @@ const Dashboard = () => {
   const [quantity, setQuantity] = useState(0);
   const [tradeType, setTradeType] = useState('buy'); // or 'sell'
   const [portfolios, setPortfolios] = useState([]); // State for storing portfolio data
+  const [account, setAccount] = useState([])
   const [additionalCash, setAdditionalCash] = useState(10000); 
 
   function constructQuery(tickerSymbol) {
@@ -131,6 +133,18 @@ const Dashboard = () => {
     }
   };
 
+
+  const fetchAccountData = async () => {
+    const userId = '1'; // Replace with the actual user's ID
+    try {
+      const response = await axios.get(`/users/${userId}/get_user_info`);
+      setAccount(response.data); // Update the state with the fetched portfolio data
+    } catch (error) {
+      console.error('Error fetching portfolio data', error);
+      // Handle errors (e.g., show an error message)
+    }
+  };
+
   const updateCash = async () => {
     const userId = '1'; // Replace with the actual user's ID
     try {
@@ -150,41 +164,75 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
-      {/* UI elements for ticker input, price fetching, and trading */}
-      <input type="text" value={ticker} onChange={(e) => setTicker(e.target.value)} placeholder="Enter ticker symbol" />
-      <button onClick={fetchCurrentPrice}>Get Current Price</button>
-      <div>Current Price: {currentPrice ? `$${currentPrice}` : 'N/A'}</div>
-      <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Quantity" />
-      <select value={tradeType} onChange={(e) => setTradeType(e.target.value)}>
-        <option value="buy">Buy</option>
-        <option value="sell">Sell</option>
-      </select>
-      <button onClick={handleTrade}>Execute Trade</button>
-
-      {/* Display fetched portfolio data */}
-      <div>
-        <h2>Your Portfolios</h2>
-        <button onClick={fetchPortfolioData}>Refresh Portfolios</button>
-        {portfolios.map((portfolio, index) => (
-          <div key={index}>
-            <p>Ticker: {portfolio.stock_ticker}</p>
-            <p>Name: {portfolio.stock_name}</p>
-            <p>Quantity: {portfolio.bought_quantity}</p>
-            <p>Bought Price: {portfolio.bought_price}</p>
-          </div>
-        ))}
+    <div className="dashboard">
+   <div className="account-summary">
+      <h2>Account Summary</h2>
+      <div className="account-detail">
+        <p className="account-label">Current Cash:</p>
+        <p className="account-value">{account.account_cash}</p>
       </div>
-      <div>
-        <h2>Update Cash</h2>
+      <div className="account-detail">
+        <p className="account-label">Current Stock Value:</p>
+        <p className="account-value">{account.account_stock_value}</p>
+      </div>
+      <div className="account-detail">
+        <p className="account-label">Total Value:</p>
+        <p className="account-value">{account.account_total_value}</p>
+      </div>
+      <button className="refresh-button" onClick={fetchAccountData}>Refresh Account</button>
+    </div>
+    
+    <div className="positions">
+      <h2>Positions</h2>
+      <div className="add-cash">
         <select value={additionalCash} onChange={(e) => setAdditionalCash(Number(e.target.value))}>
           <option value={10000}>$10,000</option>
           <option value={20000}>$20,000</option>
           <option value={30000}>$30,000</option>
         </select>
-        <button onClick={updateCash}>Add Cash</button>
+        <button className="add-cash-button" onClick={updateCash}>Add Cash</button>
       </div>
+      
+      <button className="refresh-button" onClick={fetchPortfolioData}>Refresh Portfolios</button>
+      
+      {portfolios.map((portfolio, index) => (
+        <div key={index} className="portfolio-item">
+          <p>Ticker: {portfolio.stock_ticker}</p>
+          <p>Name: {portfolio.stock_name}</p>
+          <p>Quantity: {portfolio.bought_quantity}</p>
+          <p>Bought Price: {portfolio.bought_price}</p>
+        </div>
+      ))}
     </div>
+    
+    <div className="trading-interface">
+      <input 
+        type="text" 
+        value={ticker} 
+        onChange={(e) => setTicker(e.target.value)} 
+        placeholder="Enter ticker symbol" 
+        className="ticker-input"
+      />
+      <button className="fetch-price-button" onClick={fetchCurrentPrice}>Get Current Price</button>
+      <div className="current-price">Current Price: {currentPrice ? `$${currentPrice}` : 'N/A'}</div>
+      <input 
+        type="number" 
+        value={quantity} 
+        onChange={(e) => setQuantity(e.target.value)} 
+        placeholder="Quantity" 
+        className="quantity-input"
+      />
+      <select 
+        value={tradeType} 
+        onChange={(e) => setTradeType(e.target.value)} 
+        className="trade-type-select"
+      >
+        <option value="buy">Buy</option>
+        <option value="sell">Sell</option>
+      </select>
+      <button className="execute-trade-button" onClick={handleTrade}>Execute Trade</button>
+    </div>
+  </div>
   );
 };
 

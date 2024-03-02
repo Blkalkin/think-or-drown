@@ -1,3 +1,3 @@
 class WatchList < ApplicationRecord
-
+    
 end
